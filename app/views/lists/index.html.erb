@@ -1,0 +1,8 @@
+<h1>List of BucketLists!</h1>
+<h2>Click Bucketlist To View Destinations</h2>
+<%= link_to 'New Bucketlist', new_list_path %>
+<ul>
+  <% @lists.each do |list| %>
+    <li><%= link_to list.name, list %></li>
+  <% end %>
+</ul>
