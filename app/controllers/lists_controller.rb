@@ -6,23 +6,22 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = 
   end
 
   def new
-    @sub = list.new
+    @list = List.new
     render partial: "form"
   end
   
   def edit
     render partial: "form"
   end
-
+  
   def create
     @list = List.new(list_params)
-    
+
     if @list.save
-      redirect_to lists_path
+      redirect_to @list
     else
       render :new
     end
@@ -38,16 +37,15 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    redirect_to lists_path
+    redirect_to :root
   end
 
   private
-    
     def set_list
       @list = List.find(params[:id])
     end
 
     def list_params
-      params.require(:list).permit(:name)
+      params.require(:list).permit(:name, :img_url)
     end
 end
